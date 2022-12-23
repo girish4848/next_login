@@ -11,8 +11,7 @@ export default function register() {
     const [user, setUser] = useState({
         name: '',
         email: '',
-        password: '',
-        re_password:''
+        password: ''
     })
     const [isLoading,setIsLoading]=useState(false)
 
@@ -103,18 +102,6 @@ export default function register() {
                             className="bg-gray-200  py-1 px-2 outline-none flex-1 hover:bg-gray-100"
                             id="password"
                             placeholder='Password'
-                            required
-                            onChange={fieldOnchangeHandler}
-                        />
-                    </div>
-                    <div className="bg-gray-200 w-full p-2 mb-3 text-left flex items-center rounded-2xl hover:bg-gray-100">
-                        
-                        <MdLockOutline className='text-black m-2'></MdLockOutline>
-                        <input
-                            type="re_password"
-                            className="bg-gray-200  py-1 px-2 outline-none flex-1 hover:bg-gray-100"
-                            id="re_password"
-                            placeholder='Retype Password'
                             required
                             onChange={fieldOnchangeHandler}
                         />
