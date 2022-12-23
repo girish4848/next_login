@@ -15,6 +15,7 @@ export default function Home() {
   const dispatch = useDispatch()
   const auth = useSelector(state => state.auth)
   const [errors, setErrors] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
   
 
   const [authState, setAuthState] = useState({
@@ -22,9 +23,6 @@ export default function Home() {
     password: ''
   })
 
-  const [isLoading, setIsLoading] = useState(false)
-
-  
 
   const fieldOnchangeHandler = (e) => {
     setAuthState(old => ({ ...old, [e.target.id]: e.target.value }))
