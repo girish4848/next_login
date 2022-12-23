@@ -1,7 +1,7 @@
 import { useSession } from 'next-auth/react'
 import React from 'react'
 import ProtectedComponent from './protectedComponent'
-import { signIn, signOut} from "next-auth/react"
+import {signOut} from "next-auth/react"
 import { useRouter } from "next/router"
 
 export default function dashboard() {
@@ -14,7 +14,7 @@ export default function dashboard() {
 
     const btnHandler = () => {
         setTimeout(() => {
-            alert("kalooo!!!!")
+            alert("TimeOut!!!")
           }, 5000);
     }
     const router = useRouter()
@@ -62,44 +62,13 @@ export default function dashboard() {
 
                        
                         <div className="relative ml-3">
-                        <div>
-                            <button type="button" className="flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
-                            <span className="sr-only">Open user menu</span>
-                            <img className="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt=""/>
-                            </button>
-                        </div>
-
                         
-                        <div className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabIndex="-1">
-                            
-                            <a href="#" className="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabIndex="-1" id="user-menu-item-0">
-                            <button className="border-2 border-white rounded-2xl bg-black text-white px-10 py-2 font-semibold hover:bg-blue-800">Your Profile</button >
-                            </a>
-
-                            <a href="#" className="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabIndex="-1" id="user-menu-item-1">
-                            <button className="border-2 border-white rounded-2xl bg-black text-white px-10 py-2 font-semibold hover:bg-blue-800">Settings</button >
-                            </a>
-
-                            <a href="#" className="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabIndex="-1" id="user-menu-item-2">
-                                <button onClick={handlerSignout} className="border-2 border-white rounded-2xl bg-black text-white px-10 py-2 font-semibold hover:bg-blue-800">Sign Out</button ></a>
-                        </div>
+                        <button onClick={handlerSignout} className=" rounded-2xl bg-black text-white px-10 py-2 font-semibold hover:bg-blue-800">Sign Out</button >   
+            
                         </div>
                     </div>
                     </div>
-                    <div className="-mr-2 flex md:hidden">
                     
-                    <button type="button" className="inline-flex items-center justify-center rounded-md bg-gray-800 p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" aria-controls="mobile-menu" aria-expanded="false">
-                        <span className="sr-only">Open main menu</span>
-                        
-                        <svg className="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" aria-hidden="true">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-                        </svg>
-                        
-                        <svg className="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" aria-hidden="true">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                        </svg>
-                    </button>
-                    </div>
                 </div>
                 </div>
 
@@ -135,7 +104,7 @@ export default function dashboard() {
 
                     <a href="#" className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white">Settings</a>
 
-                    <a href="#" className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white">Sign out</a>
+                    <a href="#" onClick={handlerSignout} className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white">Sign out</a>
                     </div>
                 </div>
                 </div>
@@ -153,8 +122,8 @@ export default function dashboard() {
                 <div className="px-4 py-6 sm:px-0 flex-col items-center justify-center">
                     
                     <div className="h-96 rounded-lg border-4 border-dashed border-gray-200 w-full flex-1 flex-col items-center justify-center">
-                        <div className="grid grid-rows-3 grid-flow-col gap-4 flex-1 flex-col items-center justify-center">
-                            <div className="col-span-3 ..."><button onClick={btnHandler} className='bg-green-300 flex-col items-center justify-center text-white px-3 py-1 m-1 rounded-2xl'>Welcome to Dashboard</button></div>
+                        <div className="grid grid-rows-3 grid-flow-col flex-1 flex-col items-center justify-center">
+                            <div className="col-span-3 ..."><button onClick={btnHandler} className='bg-green-500 flex-col items-center justify-center text-white px-3 py-1 m-1 rounded-2xl'>Welcome to Dashboard</button></div>
                             <div className="col-span-2 ...">{JSON.stringify(data)}</div>
                             <div className="col-span-1 ...">{status}</div>
                         </div>

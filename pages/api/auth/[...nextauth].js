@@ -1,17 +1,12 @@
-import axios from "axios";
 import NextAuth from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
-import { useDispatch, useSelector } from "react-redux";
-import { authentication } from "../../../store/auth/authSlice";
+
 
 const config = {
     headers: {
         'Content-Type': 'application/json',
     },
 }
-//const dispatch = useDispatch()
-//const auth = useSelector(state => state.auth)
-
 export const authOptions = {
     pages: {
         signIn: "/"

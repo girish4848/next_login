@@ -5,6 +5,8 @@ import React, { useState } from 'react'
 import {CgProfile} from "react-icons/cg";
 import {FaEnvelope} from "react-icons/fa";
 import {MdLockOutline} from "react-icons/md";
+import {ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function register() {
     const router = useRouter()
@@ -25,8 +27,11 @@ export default function register() {
         let res = await userRegister(user)
         setIsLoading(false)
         if (res) {
-            router.push('/')
+            toast.success("Sign up Successful !")
+            setTimeout(() => {
+                router.push('/');}, 3000);
         } else {
+            toast.error("Registration Failed")
             console.log('register error');
         }
     }
@@ -83,7 +88,6 @@ export default function register() {
                         />
                     </div>
                     <div className="bg-gray-200 w-full p-2 mb-3 text-left flex items-center rounded-2xl hover:bg-gray-100">
-                        {/* <label htmlFor="email">Email</label> */}
                         <FaEnvelope className='text-black m-2 '></FaEnvelope>
                         <input
                             type="email"
@@ -95,7 +99,6 @@ export default function register() {
                         />
                     </div>
                     <div className="bg-gray-200 w-full p-2 mb-3 text-left flex items-center rounded-2xl hover:bg-gray-100">
-                        {/* <label htmlFor="password">Password</label> */}
                         <MdLockOutline className='text-black m-2'></MdLockOutline>
                         <input
                             type="password"
@@ -108,6 +111,7 @@ export default function register() {
                     </div>
                     <div className="mb-4">
                         <button className="primary-button border-2 border-white rounded-2xl bg-black text-white px-10 py-2 font-semibold hover:bg-blue-800"disabled={isLoading}>{isLoading ? 'Loading...' : 'Sign Up'}</button>
+                        <ToastContainer />
                     </div>
                     <div className="mb-4 text-white">
                         Already have an account?    

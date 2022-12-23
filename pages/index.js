@@ -5,17 +5,21 @@ import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { signIn, useSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
-import { authentication } from '../store/auth/authSlice'
-import { useDispatch, useSelector } from 'react-redux'
+import {  useSelector } from 'react-redux'
+import {  ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
+
+
+  
 
 
 export default function Home() {
   const router = useRouter()
-  const dispatch = useDispatch()
   const auth = useSelector(state => state.auth)
   const [errors, setErrors] = useState('')
   const [isLoading, setIsLoading] = useState(false)
+ 
   
 
   const [authState, setAuthState] = useState({
@@ -27,32 +31,34 @@ export default function Home() {
   const fieldOnchangeHandler = (e) => {
     setAuthState(old => ({ ...old, [e.target.id]: e.target.value }))
   }
+  
 
   const submitHandler = async (e) => {
     e.preventDefault()
-    // dispatch(authentication(authState))
+   
     signIn('credentials', {
       ...authState,
       redirect: false
     }).then(response => {
-      // console.log(response)
+ 
       if (!response.error) {
-        router.push("/dashboard")
+        toast.success("Login SuccessFul !")
+        setTimeout(() => {
+          router.push("/dashboard");}, 3000);
+        
       } else {
         if (response.error == "CredentialsSignin") {
-          setErrors("Username or Password is Wrong!")
+          toast.error("Username or Password is Wrong!")
         } else {
-          setErrors(response.error)
+          toast.warn("You did not signup in this portal")
         }
-        setTimeout(() => {
-          setErrors('')
-        }, 5000);
       }
+      
     }).catch(error => {
       console.log(error)
-      setErrors(error)
+      toast.error(error)
       setTimeout(() => {
-        setErrors('')
+        toast.error("")
       }, 5000);
     })
   }
@@ -111,17 +117,15 @@ export default function Home() {
 
           </div>
           <div className="mb-4 ">
-            {/* <button className="primary-button rounded-2xl bg-blue-500 text-white px-5 py-1" disabled={auth.loading}>{auth.loading?'Loading':'Login'}</button> */}
-            <button className="border-2 border-white rounded-2xl bg-black text-white px-10 py-2 font-semibold hover:bg-blue-800"disabled={isLoading}>{isLoading ? 'Loading...' : 'Login'}</button>
+            <button  className="border-2 border-white rounded-2xl bg-black text-white px-10 py-2 font-semibold hover:bg-blue-800"disabled={isLoading}>{isLoading ? 'Loading...' : 'Login'}</button>
+            <ToastContainer />
           </div>
           <div className="mb-4 text-white ">
             Don&apos;t have an account? &nbsp;
             <span> </span>
             <Link href={`/register`} className="text-green-300">Sign up</Link>
           </div>
-          <div className='p-2 text-red-500'>
-            <span>{errors}</span>
-          </div>
+          
         </form>
       </main>
     </div>
